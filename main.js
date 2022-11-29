@@ -1,7 +1,7 @@
   /*----- player objects -----*/
 
-const gameBoardPlayer = {};
-const gameBoardComp = {};
+let gameBoardPlayer;
+let gameBoardComp;
 
 let cards = [];
 
@@ -15,13 +15,13 @@ let computerHand = [];
 
 
   /*----- event listeners -----*/
-  // const playCard = document.getElementById('playerHand');
+  const playCard = document.getElementById('playerHand');
 
  
 
-  // playCard.addEventListener('click', () => {
-  //   console.log('hi');
-  // })
+  playCard.addEventListener('click', () => {
+    playRound();
+  })
 
 
 
@@ -63,12 +63,18 @@ function deal(cards) {
   } return console.log("Let the battle commence!");
 }
 
-// function playCard() {
-//   playerHand[0] = gameBoardPlayer;
-//   computerHand[0] = gameBoardComp;
-// }
+function playRound() {
+  let gameBoardPlayer = playerHand[0];
+  let gameBoardComp = computerHand[0];
+    // if(gameBoardPlayer.val > gameBoardComp.val) {
+    //   return console.log(gameBoardPlayer)
+    //   // gameBoardComp.pop().
+    // } else if(gameBoardPlayer.val < gameBoardComp.val) {
+    //   // gameBoardPlayer.pop()
+    //   return console.log(gameBoardComp)
+    // }
+}
 
-
+//This mimics pushing the button to start the game for now
 deckInit();
-console.log(computerHand);
-console.log(playerHand);
+
