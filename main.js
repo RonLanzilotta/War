@@ -67,25 +67,50 @@ function playRound() {
   playerHand.splice(0, 1);
   gameBoardComp.push(computerHand[0]);
   computerHand.splice(0, 1);
-    if(gameBoardPlayer[0].val > gameBoardComp[0].val){
+    if(gameBoardPlayer[gameBoardPlayer.length - 1].val > gameBoardComp[gameBoardComp.length - 1].val){
       playerDeck.push(gameBoardPlayer);
-      gameBoardPlayer.splice(0, 1);
+      gameBoardPlayer.length = 0;
       playerDeck.push(gameBoardComp);
-      gameBoardComp.splice(0, 1);
+      gameBoardComp.length = 0;
       console.log('player wins')
     }
-    else if(gameBoardPlayer[0].val < gameBoardComp[0].val){
+    else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
       computerDeck.push(gameBoardPlayer);
-      gameBoardPlayer.splice(0, 1);
+      gameBoardPlayer.length = 0;
       computerDeck.push(gameBoardComp);
-      gameBoardComp.splice(0, 1);
+      gameBoardComp.length = 0;
       console.log('computer wins');
-    } else { 
-      console.log('WAR')
-      //WAR FUNCTION
-  } console.log(playerHand.length, computerHand.length)
+    } else if(gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){ 
+      console.log('WAR');
+      war();
+  } console.log(playerHand.length, playerDeck.length, computerHand.length, computerDeck.length, gameBoardComp.length, gameBoardPlayer.length)
 }
+
+function war(){
+      gameBoardPlayer = playerHand.slice(0, 4); 
+      playerHand.splice(0, 4);
+      gameBoardComp = computerHand.slice(0, 4);
+      computerHand.splice(0, 4);
+        if(gameBoardPlayer[gameBoardPlayer.length - 1].val >            gameBoardComp[gameBoardComp.length - 1].val){
+          playerDeck.push(gameBoardPlayer);
+          gameBoardPlayer.length = 0;
+          playerDeck.push(gameBoardComp);
+          gameBoardComp.length = 0;
+          console.log('player wins')
+        }
+        else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
+          computerDeck.push(gameBoardPlayer);
+          gameBoardPlayer.length = 0;
+          computerDeck.push(gameBoardComp);
+          gameBoardComp.length = 0;
+          console.log('computer wins')
+        } else if (gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){ 
+          console.log('WAR');
+          war();
+        } console.log(playerHand.length, playerDeck.length, computerHand.length, computerDeck.length, gameBoardComp.length, gameBoardPlayer.length)
+      }
 //HYPOTHETICAL SHUFFLE DECK FUNCTION
+// function shuffleDeck(cards)
 // if(playerHand.length = 0) {
 //   shuffle(playerDeck);
 //   for(let i = 0; i < playerDeck.length; i++){
