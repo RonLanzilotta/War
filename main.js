@@ -10,7 +10,7 @@ const player = {
 }
 
 const computer = {
-  computerHand: '',
+  computerHand: [],
   playCard: () => {
     //play card function goes here
   } 
@@ -128,10 +128,18 @@ function shuffle(cards) {
     } return deal(cards);
 }
 
+//This function splits the randomized deck in half and deals them to the playerHand and computerHand respectively.
+
 function deal(cards) {
-  for (let i = 0; i < cards.length / 2; i++) {
-    player.playerHand.push()
-  }
+  for (let i = 0; i < cards.length; i++) {
+    if(i < cards.length / 2) {
+    player.playerHand.push(cards[i]);  
+    } else {
+    computer.computerHand.push(cards[i]);
+    }
+  } 
 }
 
-console.log(deck());
+deck();
+console.log(player.playerHand)
+console.log(computer.computerHand)
