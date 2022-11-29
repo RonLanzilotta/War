@@ -1,12 +1,15 @@
   /*----- player objects -----*/
-
-let gameBoardPlayer;
-let gameBoardComp;
-
+//Empty array to initialize, shuffle, and deal the deck.
 let cards = [];
-
+//These are the two spots where players can play cards
+let gameBoardPlayer = [];
+let gameBoardComp = [];
+//Each player has their hand and their deck
 let playerHand = [];
+let playerDeck =[];
+
 let computerHand = [];
+let computerDeck = [];
 
   /*----- state variables -----*/
 
@@ -15,17 +18,12 @@ let computerHand = [];
 
 
   /*----- event listeners -----*/
+  //Connects button(playerHand) to the playRound func
   const playCard = document.getElementById('playerHand');
-
- 
 
   playCard.addEventListener('click', () => {
     playRound();
   })
-
-
-
-
   /*----- functions -----*/
 
 //This function generates a deck with 4 different suits and 14 different values and pushes each as an object into an array.
@@ -34,8 +32,7 @@ function deckInit() {
         for(let val = 2; val < 15; val++) {
           cards.push({
               suit: suit,
-              val: val
-          })
+              val: val})
           };
      } return shuffle(cards);
   }
@@ -63,18 +60,45 @@ function deal(cards) {
   } return console.log("Let the battle commence!");
 }
 
+//This is the gameplay logic that is triggered by a click on the player's hand. First, we move the top card in the hand to the gameBoard. Next we run through these logical statements. Whichever player wins gets the cards pushed to their deck array.
+
 function playRound() {
-  let gameBoardPlayer = playerHand[0];
-  let gameBoardComp = computerHand[0];
-    // if(gameBoardPlayer.val > gameBoardComp.val) {
-    //   return console.log(gameBoardPlayer)
-    //   // gameBoardComp.pop().
-    // } else if(gameBoardPlayer.val < gameBoardComp.val) {
-    //   // gameBoardPlayer.pop()
-    //   return console.log(gameBoardComp)
-    // }
+  gameBoardPlayer.push(playerHand[0]);
+  playerHand.splice(0, 1);
+  gameBoardComp.push(computerHand[0]);
+  computerHand.splice(0, 1);
+    if(gameBoardPlayer[0].val > gameBoardComp[0].val){
+      playerDeck.push(gameBoardPlayer);
+      gameBoardPlayer.splice(0, 1);
+      playerDeck.push(gameBoardComp);
+      gameBoardComp.splice(0, 1);
+      console.log('player wins')
+    }
+    else if(gameBoardPlayer[0].val < gameBoardComp[0].val){
+      computerDeck.push(gameBoardPlayer);
+      gameBoardPlayer.splice(0, 1);
+      computerDeck.push(gameBoardComp);
+      gameBoardComp.splice(0, 1);
+      console.log('computer wins');
+    } else { 
+      console.log('WAR')
+      //WAR FUNCTION
+  } console.log(playerHand.length, computerHand.length)
 }
+//HYPOTHETICAL SHUFFLE DECK FUNCTION
+// if(playerHand.length = 0) {
+//   shuffle(playerDeck);
+//   for(let i = 0; i < playerDeck.length; i++){
+//     playerHand.push(playerDeck[i]);
+//   }
+// } 
+// if(computerHand.length = 0) {
+//   shuffle(computerDeck);
+//   for(let i = 0; i < computerDeck.length; i++){
+//     computerHand.push(computerDeck[i]);
+//   }} 
 
 //This mimics pushing the button to start the game for now
 deckInit();
 
+//To exit game, make some kind of game termination function with "if playerHand.length = 52 => FUNCTION { else if (computerHand.length = 52 => FUNCTION
