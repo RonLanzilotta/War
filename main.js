@@ -77,33 +77,27 @@ function compareCards(){
       computerDeck.push(...gameBoardComp);
       gameBoardComp.length = 0;
       console.log('computer wins');
-  } else { // if it's a tie
+  } else if (gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){
     console.log('WAR');
     war();
-    //if a hand reaches 0, the deck needs to become the hand
 } 
-if (playerHand.length = 0) {
-  playerHand = playerDeck;
-} if (computerHand.length = 0) {
-  computerHand = computerDeck;
-}console.log(playerDeck.length, playerHand.length, computerDeck.length, computerHand.length, gameBoardPlayer.length, gameBoardComp.length);
+console.log(`PD: ${playerDeck.length} PH: ${playerHand.length} CD: ${computerDeck.length} CH: ${computerHand.length}`);
 }
 
 function playRound() {
   //this draws a player card and moves it to the gameBoard
   gameBoardPlayer.push(playerHand[0]);
-  playerHand.splice(0, 1);
+  playerHand.shift();
   gameBoardComp.push(computerHand[0]);
-  computerHand.splice(0, 1);
+  computerHand.shift();
   compareCards();
 }
 
 function war(){
-  gameBoardPlayer = gameBoardPlayer.push(playerHand.slice(0, 4));
-  playerHand.splice(0, 4);
-  gameBardComp = gameBoardComp.push(computerHand.slice(0, 4));
+  console.log(gameBoardComp[0], gameBoardPlayer[0]);
+  gameBoardPlayer.push(playerHand[0], playerHand[1], playerHand[2], playerHand[3]);
+  gameBoardComp.push(computerHand[0], computerHand[1], computerHand[2], computerHand[3])
   console.log(gameBoardComp, gameBoardPlayer)
-  computerHand.splice(0, 4);
   compareCards();
 }
 //HYPOTHETICAL SHUFFLE DECK FUNCTION
@@ -122,7 +116,7 @@ function war(){
 
 //This mimics pushing the button to start the game for now
 deckInit();
-console.log(playerHand, computerHand)
+
 
 //To exit game, make some kind of game termination function with "if playerHand.length = 52 => FUNCTION { else if (computerHand.length = 52 => FUNCTION
 
