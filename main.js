@@ -11,6 +11,7 @@ let playerDeck =[];
 let computerHand = [];
 let computerDeck = [];
 
+
   /*----- state variables -----*/
 
 
@@ -61,54 +62,50 @@ function deal(cards) {
 }
 
 //This is the gameplay logic that is triggered by a click on the player's hand. First, we move the top card in the hand to the gameBoard. Next we run through these logical statements. Whichever player wins gets the cards pushed to their deck array.
+function compareCards(){
+  //player card wins
+  if(gameBoardPlayer[gameBoardPlayer.length - 1].val > gameBoardComp[gameBoardComp.length - 1].val){
+    playerDeck.push(...gameBoardPlayer);
+    gameBoardPlayer.length = 0;
+    playerDeck.push(...gameBoardComp);
+    gameBoardComp.length = 0;
+    console.log('player wins')
+    //computer card wins
+  } else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
+      computerDeck.push(...gameBoardPlayer);
+      gameBoardPlayer.length = 0;
+      computerDeck.push(...gameBoardComp);
+      gameBoardComp.length = 0;
+      console.log('computer wins');
+  } else { // if it's a tie
+    console.log('WAR');
+    war();
+    //if a hand reaches 0, the deck needs to become the hand
+} 
+if (playerHand.length = 0) {
+  playerHand = playerDeck;
+} if (computerHand.length = 0) {
+  computerHand = computerDeck;
+}console.log(playerDeck.length, playerHand.length, computerDeck.length, computerHand.length, gameBoardPlayer.length, gameBoardComp.length);
+}
 
 function playRound() {
+  //this draws a player card and moves it to the gameBoard
   gameBoardPlayer.push(playerHand[0]);
   playerHand.splice(0, 1);
   gameBoardComp.push(computerHand[0]);
   computerHand.splice(0, 1);
-    if(gameBoardPlayer[gameBoardPlayer.length - 1].val > gameBoardComp[gameBoardComp.length - 1].val){
-      playerDeck.push(gameBoardPlayer);
-      gameBoardPlayer.length = 0;
-      playerDeck.push(gameBoardComp);
-      gameBoardComp.length = 0;
-      console.log('player wins')
-    }
-    else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
-      computerDeck.push(gameBoardPlayer);
-      gameBoardPlayer.length = 0;
-      computerDeck.push(gameBoardComp);
-      gameBoardComp.length = 0;
-      console.log('computer wins');
-    } else if(gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){ 
-      console.log('WAR');
-      war();
-  } console.log(playerHand.length, playerDeck.length, computerHand.length, computerDeck.length, gameBoardComp.length, gameBoardPlayer.length)
+  compareCards();
 }
 
 function war(){
-      gameBoardPlayer = playerHand.slice(0, 4); 
-      playerHand.splice(0, 4);
-      gameBoardComp = computerHand.slice(0, 4);
-      computerHand.splice(0, 4);
-        if(gameBoardPlayer[gameBoardPlayer.length - 1].val >            gameBoardComp[gameBoardComp.length - 1].val){
-          playerDeck.push(gameBoardPlayer);
-          gameBoardPlayer.length = 0;
-          playerDeck.push(gameBoardComp);
-          gameBoardComp.length = 0;
-          console.log('player wins')
-        }
-        else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
-          computerDeck.push(gameBoardPlayer);
-          gameBoardPlayer.length = 0;
-          computerDeck.push(gameBoardComp);
-          gameBoardComp.length = 0;
-          console.log('computer wins')
-        } else if (gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){ 
-          console.log('WAR');
-          war();
-        } console.log(playerHand.length, playerDeck.length, computerHand.length, computerDeck.length, gameBoardComp.length, gameBoardPlayer.length)
-      }
+  gameBoardPlayer = gameBoardPlayer.push(playerHand.slice(0, 4));
+  playerHand.splice(0, 4);
+  gameBardComp = gameBoardComp.push(computerHand.slice(0, 4));
+  console.log(gameBoardComp, gameBoardPlayer)
+  computerHand.splice(0, 4);
+  compareCards();
+}
 //HYPOTHETICAL SHUFFLE DECK FUNCTION
 // function shuffleDeck(cards)
 // if(playerHand.length = 0) {
@@ -125,5 +122,10 @@ function war(){
 
 //This mimics pushing the button to start the game for now
 deckInit();
+console.log(playerHand, computerHand)
 
 //To exit game, make some kind of game termination function with "if playerHand.length = 52 => FUNCTION { else if (computerHand.length = 52 => FUNCTION
+
+//Gameplay is working!!!! But there's a lot of redundant code. Try making a compareCards function that can be called from within the playRound and war functions to reduce code. Is there a better way to move objects between arrays?
+
+//Init Page?
