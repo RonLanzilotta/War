@@ -7,16 +7,16 @@ let gameBoardComp = [];
 //Each player has their hand and their deck
 let playerHand = [];
 let playerDeck =[];
-
 let computerHand = [];
 let computerDeck = [];
 
-
-  /*----- state variables -----*/
-
-
-  /*----- cached elements  -----*/
-
+if (playerHand.length == 0) {
+  playerHand = shuffle(playerDeck);
+  playerDeck = [];
+} else if (computerHand.length == 0) {
+  computerHand = shuffle(computerDeck);
+  computerDeck = [];
+}
 
   /*----- event listeners -----*/
   //Connects button(playerHand) to the playRound func
@@ -25,7 +25,14 @@ let computerDeck = [];
   playCard.addEventListener('click', () => {
     playRound();
   })
+
+  const startGame = document.getElementById('deckInit');
+
+  startGame.addEventListener('click', () => {
+    deckInit();
+  })
   /*----- functions -----*/
+  
 
 //This function generates a deck with 4 different suits and 14 different values and pushes each as an object into an array.
 function deckInit() {
@@ -39,14 +46,14 @@ function deckInit() {
   }
 
 //The newly generated deck gets randomly shuffled by the Fisher-Yates function.
-function shuffle(cards) {
+function shuffle(arr) {
     let j, x, i;
-    for (i = cards.length - 1; i > 0; i--) {
+    for (i = arr.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = cards[i];
-        cards[i] = cards[j];
-        cards[j] = x;
-    } return deal(cards);
+        x = arr[i];
+        arr[i] = arr[j];
+        arr[j] = x;
+    } return arr;
 }
 
 //This function splits the randomized deck in half and deals them to the playerHand and computerHand respectively.
@@ -57,11 +64,28 @@ function deal(cards) {
     playerHand.push(cards[i]);  
     } else {
     computerHand.push(cards[i]);
-    }
+    } 
   } return console.log("Let the battle commence!");
 }
 
 //This is the gameplay logic that is triggered by a click on the player's hand. First, we move the top card in the hand to the gameBoard. Next we run through these logical statements. Whichever player wins gets the cards pushed to their deck array.
+
+function playRound() {
+  //checks for a win condition first anytime the Player deck button is pushed
+  if ((playerHand.length + playerDeck.length) === false) {
+    return console.log("Player wins the war");
+  } else if ((computerHand.length + computerDeck.length) === false) {
+    return console.log("Computer wins the war");
+  } else {
+    //this draws a player card and moves it to the gameBoard
+      gameBoardPlayer.push(playerHand[0]);
+      gameBoardComp.push(computerHand[0]);
+      computerHand.shift();
+      playerHand.shift();
+      compareCards();
+  }
+}
+
 function compareCards(){
   //player card wins
   if(gameBoardPlayer[gameBoardPlayer.length - 1].val > gameBoardComp[gameBoardComp.length - 1].val){
@@ -69,6 +93,7 @@ function compareCards(){
     gameBoardPlayer.length = 0;
     playerDeck.push(...gameBoardComp);
     gameBoardComp.length = 0;
+    // console.log(playerHand)
     console.log('player wins')
     //computer card wins
   } else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
@@ -76,21 +101,14 @@ function compareCards(){
       gameBoardPlayer.length = 0;
       computerDeck.push(...gameBoardComp);
       gameBoardComp.length = 0;
+      // console.log(computerHand)
       console.log('computer wins');
-  } else if (gameBoardPlayer[gameBoardPlayer.length - 1].val = gameBoardComp[gameBoardComp.length - 1].val){
+  } else {
     console.log('WAR');
     war();
-} 
-console.log(`PD: ${playerDeck.length} PH: ${playerHand.length} CD: ${computerDeck.length} CH: ${computerHand.length}`);
+    //this checks if the computer/player hand has reached 0 and sends their deck to their shuffle function if the condition is met.
 }
-
-function playRound() {
-  //this draws a player card and moves it to the gameBoard
-  gameBoardPlayer.push(playerHand[0]);
-  playerHand.shift();
-  gameBoardComp.push(computerHand[0]);
-  computerHand.shift();
-  compareCards();
+console.log(`PD: ${playerDeck.length} PH: ${playerHand.length} CD: ${computerDeck.length} CH: ${computerHand.length}`);
 }
 
 function war(){
@@ -100,23 +118,9 @@ function war(){
   console.log(gameBoardComp, gameBoardPlayer)
   compareCards();
 }
-//HYPOTHETICAL SHUFFLE DECK FUNCTION
-// function shuffleDeck(cards)
-// if(playerHand.length = 0) {
-//   shuffle(playerDeck);
-//   for(let i = 0; i < playerDeck.length; i++){
-//     playerHand.push(playerDeck[i]);
-//   }
-// } 
-// if(computerHand.length = 0) {
-//   shuffle(computerDeck);
-//   for(let i = 0; i < computerDeck.length; i++){
-//     computerHand.push(computerDeck[i]);
-//   }} 
 
 //This mimics pushing the button to start the game for now
-deckInit();
-
+// deckInit();
 
 //To exit game, make some kind of game termination function with "if playerHand.length = 52 => FUNCTION { else if (computerHand.length = 52 => FUNCTION
 
