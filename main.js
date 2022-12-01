@@ -10,14 +10,6 @@ let playerDeck =[];
 let computerHand = [];
 let computerDeck = [];
 
-if (playerHand.length == 0) {
-  playerHand = shuffle(playerDeck);
-  playerDeck = [];
-} else if (computerHand.length == 0) {
-  computerHand = shuffle(computerDeck);
-  computerDeck = [];
-}
-
   /*----- event listeners -----*/
   //Connects button(playerHand) to the playRound func
   const playCard = document.getElementById('playerHand');
@@ -36,13 +28,15 @@ if (playerHand.length == 0) {
 
 //This function generates a deck with 4 different suits and 14 different values and pushes each as an object into an array.
 function deckInit() {
-    for (let suit = 0; suit < 4; suit++) {
-        for(let val = 2; val < 15; val++) {
+    // for (let suit = 0; suit < 4; suit++) {
+    //     for(let val = 2; val < 15; val++) {
+      for (let suit = 0; suit < 2; suit++) {
+        for(let val = 2; val < 10; val++) {
           cards.push({
               suit: suit,
               val: val})
           };
-     } return shuffle(cards);
+     } return deal(shuffle(cards));
   }
 
 //The newly generated deck gets randomly shuffled by the Fisher-Yates function.
@@ -72,16 +66,15 @@ function deal(cards) {
 
 function playRound() {
   //checks for a win condition first anytime the Player deck button is pushed
-  if ((playerHand.length + playerDeck.length) === false) {
+  if ((playerHand.length + playerDeck.length) == 0) {
     return console.log("Player wins the war");
-  } else if ((computerHand.length + computerDeck.length) === false) {
+  } else if ((computerHand.length + computerDeck.length) == 0) {
     return console.log("Computer wins the war");
   } else {
     //this draws a player card and moves it to the gameBoard
-      gameBoardPlayer.push(playerHand[0]);
-      gameBoardComp.push(computerHand[0]);
-      computerHand.shift();
-      playerHand.shift();
+      gameBoardPlayer.push(playerHand.shift());
+      gameBoardComp.push(computerHand.shift());
+      console.log(`playerBoard`, gameBoardPlayer, `computerBoard`, gameBoardComp)
       compareCards();
   }
 }
@@ -113,8 +106,8 @@ console.log(`PD: ${playerDeck.length} PH: ${playerHand.length} CD: ${computerDec
 
 function war(){
   console.log(gameBoardComp[0], gameBoardPlayer[0]);
-  gameBoardPlayer.push(playerHand[0], playerHand[1], playerHand[2], playerHand[3]);
-  gameBoardComp.push(computerHand[0], computerHand[1], computerHand[2], computerHand[3])
+  gameBoardPlayer.splice(...playerHand(0, 4))
+  gameBoardComp.splice(...computerHand(0, 4))
   console.log(gameBoardComp, gameBoardPlayer)
   compareCards();
 }
