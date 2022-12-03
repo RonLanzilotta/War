@@ -83,17 +83,17 @@ function compareCards(){
   //player card wins
   if(gameBoardPlayer[gameBoardPlayer.length - 1].val > gameBoardComp[gameBoardComp.length - 1].val){
     playerDeck.push(...gameBoardPlayer);
-    gameBoardPlayer.length = 0;
+    gameBoardPlayer = [];
     playerDeck.push(...gameBoardComp);
-    gameBoardComp.length = 0;
+    gameBoardComp = [];
     // console.log(playerHand)
     console.log('player wins')
     //computer card wins
   } else if(gameBoardPlayer[gameBoardPlayer.length - 1].val < gameBoardComp[gameBoardComp.length - 1].val){
       computerDeck.push(...gameBoardPlayer);
-      gameBoardPlayer.length = 0;
+      gameBoardPlayer = [];
       computerDeck.push(...gameBoardComp);
-      gameBoardComp.length = 0;
+      gameBoardComp = [];
       // console.log(computerHand)
       console.log('computer wins');
   } else {
@@ -106,14 +106,12 @@ console.log(`PD: ${playerDeck.length} PH: ${playerHand.length} CD: ${computerDec
 
 function war(){
   console.log(gameBoardComp[0], gameBoardPlayer[0]);
-  gameBoardPlayer.splice(...playerHand(0, 4))
-  gameBoardComp.splice(...computerHand(0, 4))
+  gameBoardPlayer.push(playerHand[0], playerHand[1], playerHand[2], playerHand[3]);
+  gameBoardComp.push(computerHand[0], computerHand[1], computerHand[2], computerHand[3]);
   console.log(gameBoardComp, gameBoardPlayer)
   compareCards();
 }
 
-//This mimics pushing the button to start the game for now
-// deckInit();
 
 //To exit game, make some kind of game termination function with "if playerHand.length = 52 => FUNCTION { else if (computerHand.length = 52 => FUNCTION
 

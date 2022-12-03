@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
-    <script src="./main.js" defer></script>
+    <script src="./app.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <h1>W A R</h1>
-    <button id="deckInit">Deal Cards</button>
-    <div>
-        <div>Computer Hand</div>
-        <div>Computer Card</div>
+    <button id="deckInit">Start Game</button>
+
+    <div class="card" id="computer">Computer Hand</div>
+    <div class="card" id="computer">Computer Deck</div>
+
+    <div class="card" id="gameboard">Computer Card</div>
+    <div class="card" id="gameboard">Player Card</div>
+    
+    <div class="card" id="player"><button id="playerHand">Player Hand</button></div>
+    <div class="card" id="player">Player Deck</div>
         
-    </div>
-    <div>
-        <button class="gameboard" id="playerHand">Player Hand</button>
-        <div class="gameboard">Player Card</div>
-    </div>
+        
 </body>
 </html>

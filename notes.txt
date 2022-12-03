@@ -1,0 +1,24 @@
+"Static App" has only HTML, CSS, and JS files, no back end.
+
+HTML must be in your root file.
+
+Personal GitHub -> 
+Make sure my GitHub repo is set to public.
+
+Deploy on main branch from root folder, click save. Will take a few minutes.
+
+The link will look like 
+https://RonLanzilotta.github.io/War
+top of GitHub Pages.
+
+Project 1 Gallery
+-submit project as an "Issue"
+
+live - https://RonLanzilotta.github.io/War
+Github - link to project GitHub
+
+README.md
+-Introduction
+-MVP Requirements
+-Technology Used
+-Wireframe
