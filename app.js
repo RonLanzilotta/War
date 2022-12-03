@@ -1,6 +1,6 @@
 //An empty array that is used during shuffling.
 let cards =[];
-
+let val;
 //Each player has their hand from which they play cards and their deck from which they shuffle and draw cards when their hand runs out.
 let playerHand = [];
 let playerDeck = [];
@@ -29,8 +29,8 @@ function deckInit() {
   for (let i = 0; i < 2; i++) {
     for (let j = 2; j < 8; j++) {
       cards.push({
-        i: suit,
-        j: val,
+        suit: i,
+        val: j,
       });
     }
   }
@@ -125,12 +125,14 @@ function war() {
   if (playerHand.length + playerDeck.length < 4) {
     playerGameBoard = [];
     computerGameBoard = [];
-    reset();
+    console.log("Arrrgh, Player has lost the war!");
+    return;
   }
   if (computerHand.length + computerDeck.length < 4) {
     playerGameBoard = [];
     computerGameBoard = [];
-    reset();
+    console.log("Victory! We've won the war");
+    return;
   }
   //If the player/comp's hand is empty, but there are cards in their deck, shuff
   if (playerHand.length < 4) {
@@ -138,13 +140,20 @@ function war() {
     playerHand = shuffle(playerDeck);
     playerDeck = [];
     cards = [];
+    console.log(`playerHand < 4, cards in deck`)
   }
   if (computerHand.length < 4) {
     computerDeck.push(...computerHand);
     computerHand = shuffle(computerDeck);
     computerDeck = [];
     cards = [];
+    console.log(`computerHand < 4, cards in deck`)
   }
+
+  // for(let i = 0; i < playerHand.length; i++) {
+  //   playerGameBoard.push(playerHand[i]);
+  // }  
+  //   playerHand.splice(playerHand.length);
 
   playerGameBoard.push(
     playerHand[0],
@@ -153,6 +162,12 @@ function war() {
     playerHand[3]
   );
   playerHand.splice(0, 4);
+
+  // for(let i = 0; i < computerHand.length; i++) {
+  //   computerGameBoard.push(computerHand[i]);
+  // } 
+  //   computerHand.splice(computerHand.length);
+
 
   computerGameBoard.push(
     computerHand[0],
@@ -180,7 +195,8 @@ function war() {
 function checkHandCheckWin() {
   if (playerHand.length == 0) {
     if (playerDeck.length == 0) {
-      reset();
+      console.log("Arrrgh, Player has lost the war!");
+      return;
     } else {
       //If player/comp has cards in their deck, but not their hand, shuffle deck and return to hand. Clear deck.
       playerHand = shuffle(playerDeck);
@@ -189,7 +205,8 @@ function checkHandCheckWin() {
   }
   if (computerHand.length == 0) {
     if (computerDeck.length == 0) {
-      reset();
+      console.log("Victory! We've won the war");
+      return;
     } else {
       computerHand = shuffle(computerDeck);
       computerDeck = [];
@@ -198,20 +215,21 @@ function checkHandCheckWin() {
 }
 
 //When there are no cards left in player/comp deck and hand, console log the winner and clear the variables.
-function reset() {
-  if (playerHand.length == 0) {
-    if (playerDeck.length == 0) {
-      console.log("Arrrgh, Player has lost the war!");
-    }
-  }
-  if (computerHand.length == 0) {
-    if (computerDeck.length == 0) {
-      console.log("Victory! We've won the war");
-    }
-  }
-  // playerHand = [];
-  // playerDeck = [];
-  // computerHand = [];
-  // computerDeck = [];
-  return;
-}
+// function reset() {
+//   if (playerHand.length == 0) {
+//     if (playerDeck.length == 0) {
+      
+//       });
+//     }
+//   }
+//   if (computerHand.length == 0) {
+//     if (computerDeck.length == 0) {
+      
+//       });
+//     }
+//   }
+//   // playerHand = [];
+//   // playerDeck = [];
+//   // computerHand = [];
+//   // computerDeck = [];
+// }
