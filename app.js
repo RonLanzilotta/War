@@ -34,7 +34,6 @@ function deckInit() {
       });
     }
   }
-  console.log('hi');
   return deal(shuffle(cards));
 }
 
@@ -213,23 +212,3 @@ function checkHandCheckWin() {
     }
   }
 }
-
-//When there are no cards left in player/comp deck and hand, console log the winner and clear the variables.
-// function reset() {
-//   if (playerHand.length == 0) {
-//     if (playerDeck.length == 0) {
-      
-//       });
-//     }
-//   }
-//   if (computerHand.length == 0) {
-//     if (computerDeck.length == 0) {
-      
-//       });
-//     }
-//   }
-//   // playerHand = [];
-//   // playerDeck = [];
-//   // computerHand = [];
-//   // computerDeck = [];
-// }

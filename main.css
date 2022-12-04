@@ -1,47 +1,62 @@
-body {
-    background: rgb(182, 242, 227);
-};
-
-h1 {
-    font: optional;
-    text-align: center;
-    align-content: center;
+.flexbox-container {
+    display: flex;
 }
 
-.gameboard {
+h1 {
+    text-align: center;
+}
+
+button#deckInit {
+    position: relative;
+    background-color: rgb(228, 11, 11);
+    font-size: .9em;
+    font-style: oblique;
+    color: white;
+    cursor: pointer;
+    left: 45.7%;
+    width: 70px;
+    margin: -15px 0 25px 0;
+    border-radius: 100px;
+}
+
+.table {
     display: flex;
-    justify-content: center, space-between;
-    align-items: flex-end;
+    flex-direction: row;
+    width: 650px;
+    height: 650px;
+    margin: auto;
+    border: 5px solid #11137a;
+    border-radius: 10px;
+}
+
+.container {
+    border: 3px solid black;
+}
+
+div.computer {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .card {
+    flex-direction: column;
     box-sizing: border-box;
-    display: flex;
-    margin: 5px 5px 30px 5px;
+    margin: auto;
     cursor: pointer;
-    /* Set the card's dimensions, and size it relative to
-       it's font size. */
     font-size: inherit;
     width: 5.0em;
     height: 7.5em;
-    /* Add a default background color and border. */
     background-color: rgb(236, 141, 141);
     border-radius: 0.50em;
     border: 1.5px solid #c3c3c3;
-    /* Scale and set the background settings. */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
-    /* "Hide" any text within the element (use text to be
-       simply compliant with screen readers, etc.). */
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
 }
 
 #player, #computer {
-    display: flex;
     box-shadow: 5px 5px 5px 0px slategray;
 }
-
-#player
