@@ -26,8 +26,8 @@ startGame.addEventListener("click", () => {
 
 //Two nested for loops conjures the deck and pushes each card object to an empty array called "cards".
 function deckInit() {
-  for (let i = 0; i < 2; i++) {
-    for (let j = 2; j < 8; j++) {
+  for (let i = 0; i < 4; i++) {
+    for (let j = 2; j < 15; j++) {
       cards.push({
         suit: i,
         val: j,
