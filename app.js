@@ -1,6 +1,5 @@
 //An empty array that is used during shuffling.
 let cards =[];
-let val;
 //Each player has their hand from which they play cards and their deck from which they shuffle and draw cards when their hand runs out.
 let playerHand = [];
 let playerDeck = [];
@@ -23,6 +22,8 @@ const startGame = document.getElementById("deckInit");
 startGame.addEventListener("click", () => {
   deckInit();
 });
+
+// const warRed = document.getElementsByClassName('table');
 
 //Two nested for loops conjures the deck and pushes each card object to an empty array called "cards".
 function deckInit() {
@@ -121,6 +122,7 @@ function compareCards() {
 //This initiates a War.
 function war() {
   // First we check to see if there are enough cards between the player/comp hand and deck to conduct a war. If not, the game ends with the reset().
+
   if (playerHand.length + playerDeck.length < 4) {
     playerGameBoard = [];
     computerGameBoard = [];
@@ -139,20 +141,13 @@ function war() {
     playerHand = shuffle(playerDeck);
     playerDeck = [];
     cards = [];
-    console.log(`playerHand < 4, cards in deck`)
   }
   if (computerHand.length < 4) {
     computerDeck.push(...computerHand);
     computerHand = shuffle(computerDeck);
     computerDeck = [];
     cards = [];
-    console.log(`computerHand < 4, cards in deck`)
   }
-
-  // for(let i = 0; i < playerHand.length; i++) {
-  //   playerGameBoard.push(playerHand[i]);
-  // }  
-  //   playerHand.splice(playerHand.length);
 
   playerGameBoard.push(
     playerHand[0],
@@ -161,12 +156,6 @@ function war() {
     playerHand[3]
   );
   playerHand.splice(0, 4);
-
-  // for(let i = 0; i < computerHand.length; i++) {
-  //   computerGameBoard.push(computerHand[i]);
-  // } 
-  //   computerHand.splice(computerHand.length);
-
 
   computerGameBoard.push(
     computerHand[0],
