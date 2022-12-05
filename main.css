@@ -1,11 +1,10 @@
 body {
-    background-image: url(./images/navy.jpeg);
-    background-size: 2000px;
-    height: 100vh;
-    background-attachment: fixed;
-    background-position-x: -200px;
-    background-position-y: -130px;
-
+  background-image: url(./images/navy.jpeg);
+  background-size: 2000px;
+  height: 100vh;
+  background-attachment: fixed;
+  background-position-x: -200px;
+  background-position-y: -130px;
 }
 
 /* @media screen and (max-width: 1534px) {
@@ -16,100 +15,116 @@ body {
 } */
 
 h1 {
-    font-family: 'Abril Fatface', cursive;
-    text-shadow: -2px 2px 10px white;
-    display: block;
-    text-align: center;
-    font-size: 55px;
-    margin: 60px 0 5px;
+  font-family: "Abril Fatface", cursive;
+  letter-spacing: 20px;
+  text-shadow: -2px 2px 10px white;
+  display: block;
+  text-align: center;
+  font-size: 55px;
+  margin: 60px 0 5px 15px;
 }
 
 #deckInit {
-    display: block;
-    background-color: rgb(228, 11, 11);
-    font-size: .9em;
-    font-style: oblique;
-    color: bisque;
-    width: 65px;
-    height: 65px;
-    margin: 0 auto 25px;
-    border-radius: 100px;
-    box-shadow: 2px 3px 3px 0px #390707;
-    cursor: pointer;
+  display: block;
+  background-color: rgb(228, 11, 11);
+  font-size: 0.9em;
+  font-style: oblique;
+  color: bisque;
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 25px;
+  border-radius: 100px;
+  box-shadow: 2px 3px 3px 0px #390707;
+  cursor: pointer;
 }
 #deckInit:hover {
-    filter: brightness(170%);
+  filter: brightness(170%);
 }
 
 .table {
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    margin: 0 auto;
-    max-width: 900px;
-    max-height: 900px;
-    border: 17px ridge #4a694e;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, .25);
-
-
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin: 0 auto;
+  max-width: 900px;
+  max-height: 900px;
+  border: 17px ridge #4a694e;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .container1 {
-    
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .container2 {
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .container3 {
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .card {
-    background-image: url(./images/backs/blue.svg);
-    box-sizing: border-box;
-    margin: auto;
-    cursor: pointer;
-    font-size: inherit;
-    margin: 40px 10px;
-    width: 6em;
-    height: 8.25em;
-    background-color: rgb(250, 249, 228);
-    border-radius: 0.50em;
-    border: 1.5px solid #c3c3c3;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+  background-image: url(./images/backs/blue.svg);
+  box-sizing: border-box;
+  font-size: inherit;
+  margin: 40px 10px;
+  width: 6em;
+  height: 8.25em;
+  background-color: rgb(250, 249, 228);
+  border-radius: 0.5em;
+  border: 1.5px solid #c3c3c3;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-#player, #computer {
-    box-shadow: 9px 9px 10px 0px rgb(28, 30, 31);
-    border-style: ridge;
-    text-size-adjust: 1em;
+#player,
+#computer,
+#playerHand {
+  box-shadow: 9px 9px 10px 0px rgb(28, 30, 31);
+  border-style: ridge;
+  text-size-adjust: 1em;
 }
 
 #gameboard {
-    box-shadow: 3px 3px 5px 0px rgb(28, 30, 31);
+  box-shadow: 3px 3px 5px 0px rgb(28, 30, 31);
 }
 
-#player:hover {
-    filter: brightness(170%);
+#playerHand:hover {
+  filter: brightness(170%);
+  cursor: pointer;
 }
 
-#player{
-    overflow: visible;
-
+#playerHand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Abril Fatface", cursive;
+  text-shadow: 2px 1px 5px rgb(255, 106, 106);
+  background-image: url(./images/backs/blue.svg);
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 40px 10px;
+  width: 4em;
+  height: 5.5em;
+  background-color: rgb(250, 249, 228);
+  border-radius: 0.5em;
+  border: 1.5px solid #c3c3c3;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  text-indent: 100%;
+  white-space: normal;
+  letter-spacing: 3px;
+  font-size: 24px;
 }
