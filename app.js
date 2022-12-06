@@ -11,28 +11,16 @@ let playerGameBoard = [];
 let computerGameBoard = [];
 
 //Event Listeners
-
 const startGame = document.getElementById("deckInit");
-
-startGame.addEventListener("click", () => {
-  deckInit();
-});
+startGame.addEventListener("click", deckInit);
 
 const playCard = document.getElementById("playerHand");
-
-// playCard.addEventListener("click", () => {
-//   playRound();
-// });
 playCard.addEventListener("click", playRound);
 
 let compCard = document.querySelector('#compCard');
-
 let playerCard = document.querySelector('#playerCard')
 
-
-// const warRed = document.getElementsByClassName('table');
-
-//Two nested for loops conjures the deck and pushes each card object to an empty array called "cards".
+//Two nested for loops conjure the deck and push each card object to an empty array called "cards".
 function deckInit() {
   for (let i = 0; i < 4; i++) {
     for (let j = 2; j < 15; j++) {
@@ -57,7 +45,7 @@ function shuffle(arr) {
   return arr;
 }
 
-//On game init, takes the shuffled deck and splits it in two. Clears the array "cards" once dealt so that there are no duplicates.
+//Takes the shuffled array and splits it in half, dealing the player/comp hands.
 function deal(cards) {
   for (let i = 0; i < cards.length; i++) {
     if (i < cards.length / 2) {
@@ -70,22 +58,24 @@ function deal(cards) {
   return document.querySelector('.messages').innerText = 'Let the battle commence!';
 }
 
-//This initiates the gameplay. First we check for an empty hand or win conditional. Player and computer push the first cards in their hands to the Game Board.
+//This initiates the gameplay. First we check for an empty hand or win conditional. 
 function playRound() {
   checkHandCheckWin();
 
   //Moves card images from hand (facedown) to gameboard( face up).
   switchCardImage(playerCard, playerHand[0]);
+  // Player and computer push the first cards in their hands to the Game Board.
   playerGameBoard.push(playerHand.shift());
+
   switchCardImage(compCard, computerHand[0])
   computerGameBoard.push(computerHand.shift());
   
   compareCards();
 }
 
-//This compares the cards and pushes all cards on the Game Board to the winner's deck. Game Board is cleared after each turn. In case of a tie, the war function is invoked.
+//This compares the cards and pushes all cards on the gameboard to the winner's deck. Gameboard arrays are cleared after each round. If there's a tie, the war function is invoked.
 function compareCards() {
-  if (
+  if ( //player card is high
     playerGameBoard[playerGameBoard.length - 1].val >
     computerGameBoard[computerGameBoard.length - 1].val
   ) {
@@ -93,19 +83,20 @@ function compareCards() {
     playerGameBoard = [];
     playerDeck.push(...computerGameBoard);
     computerGameBoard = [];
+    //console.logs left to display game logic. With more time, change these to counters for deck and hand
     console.log(
-      `PLAYER:`,
-      playerGameBoard.length,
-      playerHand.length,
+      `PLAYER: GB`,
+      playerGameBoard.length, `H`,
+      playerHand.length, `D`,
       playerDeck.length,
-      `COMP:`,
-      computerGameBoard.length,
-      computerHand.length,
+      `COMP: GB`,
+      computerGameBoard.length, `H`,
+      computerHand.length, `D`,
       computerDeck.length
     );
     document.querySelector('.messages').innerText = `Player wins`;
     return;
-  } else if (
+  } else if (//computer card is high
     playerGameBoard[playerGameBoard.length - 1].val <
     computerGameBoard[computerGameBoard.length - 1].val
   ) {
@@ -114,44 +105,45 @@ function compareCards() {
     computerDeck.push(...computerGameBoard);
     computerGameBoard = [];
     console.log(
-      `PLAYER:`,
-      playerGameBoard.length,
-      playerHand.length,
+      `PLAYER: GB`,
+      playerGameBoard.length, `H`,
+      playerHand.length, `D`,
       playerDeck.length,
-      `COMP:`,
-      computerGameBoard.length,
-      computerHand.length,
+      `COMP: GB`,
+      computerGameBoard.length, `H`,
+      computerHand.length, `D`,
       computerDeck.length
     );
     document.querySelector('.messages').innerText = "Computer wins";
     return;
-  } else {
+  } else { //otherwise, war!
+    //We need to break the play button and re-assign it to the war function in order for WAR to be apparent in browser.
     playCard.removeEventListener('click', playRound)
-    // playCard.onclick = war;
     playCard.addEventListener("click", war)
     document.querySelector('.messages').innerText = "WAR";
     return;
   }
 }
 
-//This initiates a War.
+//Initiates a war
 function war() {
-  // First we check to see if there are enough cards between the player/comp hand and deck to conduct a war. If not, the game ends with the reset().
-  console.log("I'm back in war function")
+  //fix Play button now that we are in war function.
   playCard.removeEventListener('click', war)
   playCard.addEventListener("click", playRound);
 
-
+  // Check if there are enough cards between player/comp hand and deck to conduct war.
   if (playerHand.length + playerDeck.length < 4) {
     playerGameBoard = [];
     computerGameBoard = [];
     document.querySelector('.messages').innerText = "Defeat! Player has lost the war";
+    playCard.removeEventListener('click', playRound)
     return;
   }
   if (computerHand.length + computerDeck.length < 4) {
     playerGameBoard = [];
     computerGameBoard = [];
     document.querySelector('.messages').innerText = "Victory! We've won the war";
+    playCard.removeEventListener('click', playRound)
     return;
   }
   //If the player/comp's hand is empty, but there are cards in their deck, shuff
@@ -167,9 +159,10 @@ function war() {
     computerDeck = [];
     cards = [];
   }
-
+  //pushes the top card's image to compare during war.
   switchCardImage(playerCard, playerHand[3]);
 
+  //Each player pushes 4 cards to the field with the final card to be compared.
   playerGameBoard.push(
     playerHand[0],
     playerHand[1],
@@ -189,27 +182,27 @@ function war() {
   computerHand.splice(0, 4);
 
   console.log(
-    `PLAYER: `,
-    playerGameBoard.length,
-    playerHand.length,
+    `PLAYER: GB`,
+    playerGameBoard.length, `H`,
+    playerHand.length, `D`,
     playerDeck.length,
-
-    `COMP:`,
-    computerGameBoard.length,
-    computerHand.length,
+    `COMP: GB`,
+    computerGameBoard.length, `H`,
+    computerHand.length, `D`,
     computerDeck.length
   );
   compareCards();
 }
 
-//Checks first to see if player/comp has any cards. If no cards, run reset function.
+//Checks first to see if player/comp has any cards in hand. If there are no cards left between their deck and hand, trigger the win conditional below. Break Play button.
 function checkHandCheckWin() {
   if (playerHand.length == 0) {
     if (playerDeck.length == 0) {
       document.querySelector('.messages').innerText = "Defeat! Player has lost the war";
+      playCard.removeEventListener('click', playRound)
       return;
     } else {
-      //If player/comp has cards in their deck, but not their hand, shuffle deck and return to hand. Clear deck.
+      //If player/comp has cards in their deck, but not their hand, the deck is shuffled and returned to their hand
       playerHand = shuffle(playerDeck);
       playerDeck = [];
     }
@@ -217,6 +210,7 @@ function checkHandCheckWin() {
   if (computerHand.length == 0) {
     if (computerDeck.length == 0) {
       document.querySelector('.messages').innerText = "Victory! We've won the war";
+      playCard.removeEventListener('click', playRound)
       return;
     } else {
       computerHand = shuffle(computerDeck);
