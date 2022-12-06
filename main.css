@@ -1,5 +1,4 @@
 body {
-  display: absolute;
   background-image: url(./images/navy.jpeg);
   background-size: 2000px;
   height: 100vh;
@@ -7,13 +6,6 @@ body {
   background-position-x: -200px;
   background-position-y: -130px;
 }
-
-/* @media screen and (max-width: 1534px) {
-    body {
-        left: 50%;
-        margin-left: -767px;
-    }
-} */
 
 h1 {
   font-family: "Abril Fatface", cursive;
@@ -38,6 +30,7 @@ h1 {
   box-shadow: 2px 3px 3px 0px #390707;
   cursor: pointer;
 }
+
 #deckInit:hover {
   filter: brightness(170%);
 }
@@ -56,18 +49,15 @@ h1 {
 
 .container1 {
   display: flex;
-  flex-direction: row;
 }
 
 .container2 {
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
 .container3 {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
 }
 
@@ -124,26 +114,14 @@ h1 {
 
 #playerHand {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   font-family: "Abril Fatface", cursive;
   text-shadow: 2px 1px 5px rgb(255, 106, 106);
-  background-image: url(./images/backs/blue.svg);
-  box-sizing: border-box;
-  cursor: pointer;
-  margin: 40px 10px;
+  font-size: 24px;
+  letter-spacing: 3px;
   width: 4em;
   height: 5.5em;
-  background-color: rgb(250, 249, 228);
-  border-radius: 0.5em;
-  border: 1.5px solid #c3c3c3;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  text-indent: 100%;
-  white-space: normal;
-  letter-spacing: 3px;
-  font-size: 24px;
+  cursor: pointer;
 }
 
 .card.dA {
