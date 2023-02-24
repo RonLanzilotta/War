@@ -1,3 +1,5 @@
+![Game Init](./images/GameInit.jpg)
+
 # W A R
 
 ### In this classic card game, players rely solely on luck of the draw to deploy their cards to the battlefield where the high card is always victorious.
@@ -7,8 +9,6 @@ Danish developer Einar Egilsson once said about the game, "Much like real war, i
 The game is won when a player has collected all cards. Players shuffle and divide a deck in half between them. They each flip the top card in their hand and high card wins both cards shown and puts them in a separate pile. If there is a tie, the players have WAR. Each player puts 3 cards face down in the center and flip their fourth card to compare. Continue this process until a high card appears. If a player does not have enough cards to conduct a war or has no cards left, the game is over.
     
 Despite of, or perhaps because of its simplicity, the game is known today all over the world by different regional names. I grew up calling it WAR, and couldn't resist the nostalgic challenge when it came time to choose a game for this project.
-
-![Game Init](./images/GameInit.jpg)
 
 ## Technologies Used
 
